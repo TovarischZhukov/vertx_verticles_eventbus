@@ -1,4 +1,4 @@
-rootProject.name = 'vertx_verticles_eventbus_example'
+rootProject.name = 'vertx_verticles_example'
 include 'context'
 include 'verticles'
 include 'async-coordination'
