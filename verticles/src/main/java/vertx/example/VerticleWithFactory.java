@@ -5,21 +5,21 @@ import io.vertx.core.Verticle;
 import io.vertx.core.impl.JavaVerticleFactory;
 
 @SuppressWarnings({"MagicNumber", "UseOfSystemOutOrSystemErr"})
-public final class Auditor extends AbstractVerticle {
+public final class VerticleWithFactory extends AbstractVerticle {
   private final long number;
 
-  private Auditor(long number) {
+  private VerticleWithFactory(long number) {
     this.number = number;
   }
 
   @Override
   public void start() {
-    System.out.println("Start " + number + " auditor");
+    System.out.println("Start " + number + " VerticleWithFactory");
   }
 
   @SuppressWarnings("NotNullNullableValidation")
   public static final class Factory extends JavaVerticleFactory {
-    private long auditorNumber;
+    private long verticleNumber;
 
     @Override
     public String prefix() {
@@ -29,7 +29,7 @@ public final class Auditor extends AbstractVerticle {
     @SuppressWarnings("ProhibitedExceptionDeclared")
     @Override
     public Verticle createVerticle(String verticleName, ClassLoader classLoader) {
-      return new Auditor(auditorNumber++);
+      return new VerticleWithFactory(verticleNumber++);
     }
   }
 }
