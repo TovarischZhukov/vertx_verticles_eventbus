@@ -11,7 +11,7 @@ public enum SimpleApplication {
   public static void main(String[] args) {
     final var vertx = Vertx.vertx();
     final JsonObject config = new JsonObject().put("name", "simple");
-    final DeploymentOptions options = new DeploymentOptions()/*.setWorker(true)*/.setConfig(config);
+    final DeploymentOptions options = new DeploymentOptions().setWorker(true).setConfig(config);
     vertx.deployVerticle(new SimpleVerticle(), options);
   }
 }

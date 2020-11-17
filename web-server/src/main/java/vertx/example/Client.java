@@ -13,8 +13,8 @@ public final class Client {
         .send(ar -> {
           if (ar.succeeded()) {
             var response = ar.result();
-            System.out.println("Received response with status code" + response.statusCode());
-            System.out.println("Body message " + response.bodyAsString());
+            System.out.println("Received response with status code " + response.statusCode());
+            System.out.println("Body message: " + response.bodyAsString());
           } else {
             System.out.println("Something went wrong " + ar.cause().getMessage());
           }
