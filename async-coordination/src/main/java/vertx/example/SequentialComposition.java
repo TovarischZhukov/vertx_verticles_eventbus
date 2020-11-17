@@ -12,19 +12,21 @@ public final class SequentialComposition {
     Vertx vertx = Vertx.vertx();
     FileSystem fs = vertx.fileSystem();
 
+    final var fileName = "example1.txt";
+
     Future<Void> future1 = Future.future(promise -> {
       System.out.println("future1");
-      fs.createFile("example1.txt", promise);
+      fs.createFile(fileName, promise);
     });
 
     Future<Void> startFuture = future1
         .compose(v -> Future.<Void>future(promise -> {
           System.out.println("future2");
-          fs.writeFile("example1.txt", Buffer.buffer(), promise);
+          fs.writeFile(fileName, Buffer.buffer(), promise);
         }))
         .compose(v -> Future.future(promise -> {
           System.out.println("future3");
-          fs.move("example1.txt", "example2.txt", promise);
+          fs.move(fileName, "example2.txt", promise);
         }));
 
     startFuture.onComplete(result -> System.out.println("Complete ALL " + result.succeeded()));
