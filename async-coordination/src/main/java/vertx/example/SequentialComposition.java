@@ -9,8 +9,7 @@ import io.vertx.core.file.FileSystem;
 public final class SequentialComposition {
 
   public static void main(String[] args) {
-    Vertx vertx = Vertx.vertx();
-    FileSystem fs = vertx.fileSystem();
+    FileSystem fs = Vertx.vertx().fileSystem();
 
     final var fileName = "example1.txt";
 
