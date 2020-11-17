@@ -1,12 +1,19 @@
 package vertx.example;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Promise;
 
-@SuppressWarnings({"MagicNumber", "UseOfSystemOutOrSystemErr"})
+@SuppressWarnings({"MagicNumber", "UseOfSystemOutOrSystemErr", "NotNullNullableValidation"})
 public final class SimpleVerticle extends AbstractVerticle {
 
   @Override
-  public void start() {
-    System.out.println("Start Simple");
+  public void start(Promise<Void> startPromise) {
+    vertx.executeBlocking(promise -> {
+      System.out.println("Call some blocking API");
+      promise.complete();
+    }, res -> {
+      System.out.println("Start Simple");
+      startPromise.complete();
+    });
   }
 }
